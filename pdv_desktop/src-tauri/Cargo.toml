@@ -1,0 +1,20 @@
+[package]
+name = "pdv-desktop"
+version = "1.0.0"
+description = "PDV Desktop - I9 Smart"
+authors = ["I9 Smart"]
+license = "MIT"
+repository = ""
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "1.5", features = [] }
+
+[dependencies]
+tauri = { version = "1.8", features = ["shell-open", "window-close", "window-maximize", "window-minimize", "window-unmaximize", "window-set-fullscreen"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]

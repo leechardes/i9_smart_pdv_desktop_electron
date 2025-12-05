@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build output
+src-tauri/target/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Tauri debug
+src-tauri/WixTools/
+src-tauri/.cargo/
+
+# Package lock (opcional - remova se quiser versionar)
+# package-lock.json

@@ -1,0 +1,23 @@
+{
+  "name": "pdv-desktop",
+  "version": "1.0.0",
+  "description": "PDV Desktop - I9 Smart - Aplicação para Postos de Combustíveis",
+  "author": "I9 Smart",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "build:debug": "tauri build --debug",
+    "build:windows": "tauri build --target x86_64-pc-windows-msvc",
+    "build:linux": "tauri build --target x86_64-unknown-linux-gnu",
+    "build:macos": "tauri build --target x86_64-apple-darwin",
+    "build:macos-arm": "tauri build --target aarch64-apple-darwin",
+    "icons": "tauri icon ./icons/app-icon.png"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.6.2"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^1.6.0"
+  }
+}
