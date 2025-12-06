@@ -66,6 +66,7 @@ Os grupos organizam as configurações em seções no frontend:
 | `fiscal` | Configurações Fiscais | FileText | NFC-e, ambiente |
 | `descontos` | Descontos Automáticos | Percent | Descontos por forma de pagamento |
 | `sistema` | Sistema | Settings | Configurações gerais |
+| `tef` | TEF (Transferência Eletrônica) | CreditCard | Integração TEF para pagamentos |
 
 ## API Endpoints
 
