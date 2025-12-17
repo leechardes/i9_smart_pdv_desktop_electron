@@ -22,10 +22,45 @@
       flex-direction: column;
     }
 
-    .loading-container {
+    .container {
+      display: none;
       text-align: center;
+      max-width: 450px;
+      width: 90%;
     }
 
+    .container.active {
+      display: block;
+    }
+
+    /* Logo/Icon */
+    .logo {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 32px;
+      font-weight: bold;
+      color: #1a1a2e;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+
+    /* Spinner */
     .spinner {
       width: 50px;
       height: 50px;
@@ -40,120 +75,444 @@
       to { transform: rotate(360deg); }
     }
 
-    h1 {
-      font-size: 24px;
-      font-weight: 500;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 14px;
-    }
-
-    .error-container {
-      display: none;
-      text-align: center;
-      padding: 40px;
-      background: rgba(255, 0, 0, 0.1);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 0, 0, 0.3);
-    }
-
-    .error-container h1 {
-      color: #ff6b6b;
-    }
-
-    .error-container p {
-      color: rgba(255, 255, 255, 0.8);
-      margin-top: 10px;
-    }
-
-    .error-details {
-      margin-top: 20px;
-      padding: 15px;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 8px;
-      font-family: monospace;
-      font-size: 12px;
-      color: #ff9999;
+    /* Form */
+    .form-group {
+      margin-bottom: 20px;
       text-align: left;
-      max-width: 400px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 8px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-size: 15px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #4facfe;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    input[type="text"]::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .hint {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 8px;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 14px 28px;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      color: #1a1a2e;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      margin-top: 12px;
+      width: 100%;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-link {
+      background: none;
+      color: rgba(255, 255, 255, 0.6);
+      padding: 8px;
+      font-size: 13px;
+    }
+
+    .btn-link:hover {
+      color: #fff;
+    }
+
+    /* Settings Button (floating) */
+    .settings-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .settings-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    /* Error */
+    .error-box {
+      background: rgba(255, 107, 107, 0.1);
+      border: 1px solid rgba(255, 107, 107, 0.3);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .error-box h3 {
+      color: #ff6b6b;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .error-box p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 13px;
       word-break: break-all;
     }
 
-    .retry-btn {
-      margin-top: 20px;
-      padding: 12px 24px;
-      background: #4facfe;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background 0.3s;
+    /* Current config info */
+    .current-config {
+      background: rgba(79, 172, 254, 0.1);
+      border: 1px solid rgba(79, 172, 254, 0.3);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+      text-align: left;
     }
 
-    .retry-btn:hover {
-      background: #3d8bdb;
+    .current-config label {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 4px;
+    }
+
+    .current-config .url {
+      color: #4facfe;
+      font-size: 14px;
+      word-break: break-all;
+    }
+
+    /* Version */
+    .version {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.3);
     }
   </style>
 </head>
 <body>
-  <div id="loading" class="loading-container">
+
+  <!-- Botao de Configuracoes (sempre visivel) -->
+  <button class="settings-btn" onclick="showSettings()" title="Configurações">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+    </svg>
+  </button>
+
+  <!-- Tela 1: Loading -->
+  <div id="loading" class="container">
     <div class="spinner"></div>
     <h1>PDV Desktop</h1>
-    <p>Carregando sistema...</p>
+    <p class="subtitle">Conectando ao servidor...</p>
   </div>
 
-  <div id="error" class="error-container">
-    <h1>Erro ao Carregar PDV</h1>
-    <p>Não foi possível carregar a URL do sistema.</p>
-    <div id="error-details" class="error-details"></div>
-    <button class="retry-btn" onclick="loadConfig()">Tentar Novamente</button>
+  <!-- Tela 2: Wizard de Configuracao Inicial -->
+  <div id="setup" class="container">
+    <div class="logo">PDV</div>
+    <h1>Bem-vindo ao PDV Desktop</h1>
+    <p class="subtitle">Configure o endereço do servidor para começar</p>
+
+    <div class="form-group">
+      <label for="setup-url">Endereço do Servidor</label>
+      <input type="text" id="setup-url" placeholder="https://pdv.suaempresa.com.br" />
+      <p class="hint">Digite a URL completa do sistema PDV (com http:// ou https://)</p>
+    </div>
+
+    <button class="btn btn-primary" onclick="saveAndConnect()">
+      Conectar ao Servidor
+    </button>
   </div>
+
+  <!-- Tela 3: Configuracoes -->
+  <div id="settings" class="container">
+    <div class="logo">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+    </div>
+    <h1>Configurações</h1>
+    <p class="subtitle">Altere as configurações do PDV Desktop</p>
+
+    <div id="current-url-box" class="current-config">
+      <label>Servidor Atual</label>
+      <p class="url" id="current-url">-</p>
+    </div>
+
+    <div class="form-group">
+      <label for="settings-url">Novo Endereço do Servidor</label>
+      <input type="text" id="settings-url" placeholder="https://pdv.suaempresa.com.br" />
+    </div>
+
+    <button class="btn btn-primary" onclick="updateUrl()">
+      Salvar e Reconectar
+    </button>
+
+    <button class="btn btn-secondary" onclick="goBack()">
+      Voltar
+    </button>
+
+    <button class="btn btn-link" onclick="resetConfig()">
+      Limpar Configurações
+    </button>
+  </div>
+
+  <!-- Tela 4: Erro -->
+  <div id="error" class="container">
+    <div class="logo" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);">!</div>
+    <h1>Erro de Conexão</h1>
+    <p class="subtitle">Não foi possível conectar ao servidor</p>
+
+    <div class="error-box">
+      <h3>Detalhes do erro:</h3>
+      <p id="error-message">-</p>
+    </div>
+
+    <button class="btn btn-primary" onclick="retryConnection()">
+      Tentar Novamente
+    </button>
+
+    <button class="btn btn-secondary" onclick="showSettings()">
+      Alterar Configurações
+    </button>
+  </div>
+
+  <!-- Versao -->
+  <div class="version">PDV Desktop v1.0.0</div>
 
   <script>
+    const STORAGE_KEY = 'pdv_desktop_config';
+
+    // Gerenciamento de telas
+    function showScreen(screenId) {
+      document.querySelectorAll('.container').forEach(el => el.classList.remove('active'));
+      const screen = document.getElementById(screenId);
+      if (screen) screen.classList.add('active');
+    }
+
+    // Carregar configuracao do localStorage
+    function getConfig() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          return JSON.parse(stored);
+        }
+      } catch (e) {
+        console.error('Erro ao ler configuração:', e);
+      }
+      return null;
+    }
+
+    // Salvar configuracao no localStorage
+    function saveConfig(url) {
+      const config = { url, savedAt: new Date().toISOString() };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+      return config;
+    }
+
+    // Validar URL
+    function isValidUrl(string) {
+      try {
+        const url = new URL(string);
+        return url.protocol === 'http:' || url.protocol === 'https:';
+      } catch (_) {
+        return false;
+      }
+    }
+
+    // Conectar ao servidor
+    function connectToServer(url) {
+      showScreen('loading');
+
+      // Pequeno delay para mostrar o loading
+      setTimeout(() => {
+        window.location.href = url;
+      }, 500);
+    }
+
+    // Mostrar erro
     function showError(message) {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('error').style.display = 'block';
-      document.getElementById('error-details').textContent = message;
+      document.getElementById('error-message').textContent = message;
+      showScreen('error');
     }
 
-    function loadConfig() {
-      document.getElementById('loading').style.display = 'block';
-      document.getElementById('error').style.display = 'none';
+    // Salvar e conectar (wizard inicial)
+    function saveAndConnect() {
+      const urlInput = document.getElementById('setup-url');
+      const url = urlInput.value.trim();
 
-      fetch('config.json')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-          }
-          return response.json();
-        })
-        .then(config => {
-          if (!config.url) {
-            throw new Error('URL não definida no config.json');
-          }
+      if (!url) {
+        alert('Por favor, digite o endereço do servidor.');
+        urlInput.focus();
+        return;
+      }
 
-          // Validar URL
-          try {
-            new URL(config.url);
-          } catch (e) {
-            throw new Error(`URL inválida: ${config.url}`);
-          }
+      if (!isValidUrl(url)) {
+        alert('URL inválida. Use o formato: https://exemplo.com');
+        urlInput.focus();
+        return;
+      }
 
-          // Redirecionar para a URL do PDV
-          window.location.href = config.url;
-        })
-        .catch(error => {
-          console.error('Erro ao carregar configuração:', error);
-          showError(error.message || 'Erro desconhecido');
-        });
+      saveConfig(url);
+      connectToServer(url);
     }
 
-    // Carregar configuração ao iniciar
-    document.addEventListener('DOMContentLoaded', loadConfig);
+    // Atualizar URL (tela de configuracoes)
+    function updateUrl() {
+      const urlInput = document.getElementById('settings-url');
+      const url = urlInput.value.trim();
+
+      if (!url) {
+        alert('Por favor, digite o endereço do servidor.');
+        urlInput.focus();
+        return;
+      }
+
+      if (!isValidUrl(url)) {
+        alert('URL inválida. Use o formato: https://exemplo.com');
+        urlInput.focus();
+        return;
+      }
+
+      saveConfig(url);
+      connectToServer(url);
+    }
+
+    // Mostrar configuracoes
+    function showSettings() {
+      const config = getConfig();
+
+      if (config && config.url) {
+        document.getElementById('current-url').textContent = config.url;
+        document.getElementById('settings-url').value = config.url;
+        document.getElementById('current-url-box').style.display = 'block';
+      } else {
+        document.getElementById('current-url-box').style.display = 'none';
+        document.getElementById('settings-url').value = '';
+      }
+
+      showScreen('settings');
+    }
+
+    // Voltar (da tela de configuracoes)
+    function goBack() {
+      const config = getConfig();
+      if (config && config.url) {
+        connectToServer(config.url);
+      } else {
+        showScreen('setup');
+      }
+    }
+
+    // Tentar novamente (da tela de erro)
+    function retryConnection() {
+      const config = getConfig();
+      if (config && config.url) {
+        connectToServer(config.url);
+      } else {
+        showScreen('setup');
+      }
+    }
+
+    // Limpar configuracoes
+    function resetConfig() {
+      if (confirm('Tem certeza que deseja limpar as configurações?\n\nVocê precisará configurar o servidor novamente.')) {
+        localStorage.removeItem(STORAGE_KEY);
+        showScreen('setup');
+        document.getElementById('setup-url').value = '';
+      }
+    }
+
+    // Inicializacao
+    function init() {
+      const config = getConfig();
+
+      if (config && config.url) {
+        // Ja tem configuracao, conectar automaticamente
+        connectToServer(config.url);
+      } else {
+        // Primeira execucao, mostrar wizard
+        showScreen('setup');
+
+        // Tentar carregar URL padrao do config.json
+        fetch('config.json')
+          .then(response => response.json())
+          .then(data => {
+            if (data.url) {
+              document.getElementById('setup-url').value = data.url;
+            }
+          })
+          .catch(() => {
+            // Ignorar erro, usuario vai digitar manualmente
+          });
+      }
+    }
+
+    // Atalho de teclado: ESC para configuracoes
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const currentScreen = document.querySelector('.container.active');
+        if (currentScreen && currentScreen.id !== 'settings') {
+          showSettings();
+        }
+      }
+    });
+
+    // Iniciar
+    document.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
 </html>
